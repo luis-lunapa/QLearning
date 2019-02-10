@@ -23,44 +23,22 @@ class AnimationResultViewController: UIViewController {
     @IBOutlet weak var view8: UIView!
     @IBOutlet weak var view9: UIView!
     
-    let numberOfTrainings = 4000
+   
     
-    var isTraining = false
+    
     
     var cuartos = [UIView]()
-    var Q: [[Int]] = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ]
     
-    let R: [[Int]] = [
-        [-1, 00, -1, -1, 00, -1, -1, -1, -1, -1],
-        [00, -1, 00, -1, -1, -1, -1, -1, -1, -1],
-        [-1, 00, -1, -1, -1, -1, -1, -1, 00, -1],
-        [-1, -1, -1, -1, -1, -1, -1, -1, 00, -1],
-        [00, -1, -1, -1, -1, 00, -1, -1, 00, -1],
-        [-1, -1, -1, -1, 00, -1, 00, -1, -1, -1],
-        [-1, -1, -1, -1, -1, 00, -1, -1, -1, -1],
-        [-1, -1, -1, -1, -1, -1, -1, -1, 00, -1],
-        [-1, -1, 00, 00, 00, -1, -1, 00, -1, 100],
-        [-1, -1, -1, -1, -1, -1, -1, -1, 00, 100]
-    ]
+    var Q: [[Int]]!
     
-    
+
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         cuartos = [view0, view1, view2, view3, view4, view5, view6, view7, view8, view9]
+       
     
         // Do any additional setup after loading the view, typically from a nib.
 //        let _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {
@@ -82,62 +60,9 @@ class AnimationResultViewController: UIViewController {
         
     }
     
-    func startTraining() {
-        if isTraining {
-            print("Ya hay una sesión de entrenamiento en curso...")
-            return
-        }
-        var initialState: UIView!
-        var initialStateNumber: Int!
-        var episodeNumber = 1
-        isTraining = true
-
-        for episodeNumber in 0...numberOfTrainings { //////Base de TODO
-            print("Episodio actual = \(episodeNumber)")
-            repeat {
-                initialState  = self.cuartos.randomElement()!
-                initialStateNumber = cuartos.firstIndex(of: initialState)!// Se escoje estado inicial del robot
-            } while initialState == self.view9
-            
-            print("El estado inicial es = \(initialState)")
-            
-            initialState.addSubview(self.robot)
-            
-            
-            
-            print("Estados posibles para \(initialStateNumber) === \(self.getActionFor(state: initialStateNumber))")
-            
-            
-            
-            
-            
-        }
-        
-        
-        
-      
-        
-        
-        isTraining = false
-        //self.robot.removeFromSuperview()
-        
-    }
     
     
-    func getActionFor(state: Int)-> Int {
-        var possibleStates = [Int]()
-        
-        
-        
-        let states = R[state]
-        
-        for i in states {
-            if i == 00 {
-                possibleStates.append(i)
-            }
-        }
-        return possibleStates.randomElement()!
-    }
+    
     
     func getIndex(of view: UIView) -> Int {
         return self.cuartos.firstIndex(of: view)!
@@ -170,7 +95,7 @@ class AnimationResultViewController: UIViewController {
     
     
     @IBAction func startDidPressed(_ sender: Any) {
-        self.startTraining()
+        //self.startTraining()
     }
     
 

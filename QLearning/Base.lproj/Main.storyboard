@@ -25,13 +25,16 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Empezar Entrenamiento"/>
+                                <connections>
+                                    <action selector="startTrainingDidPressed:" destination="Rfx-Fw-eyE" eventType="touchUpInside" id="DtW-tv-PJA"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Número de Entrenamientos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ow3-vK-IhV">
                                 <rect key="frame" x="381" y="112" width="350" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxW-ai-dTB">
                                 <rect key="frame" x="198" y="490" width="716" height="299"/>
@@ -48,6 +51,9 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Mostrar Resultado"/>
+                                        <connections>
+                                            <action selector="mostrarResultadoDidPressed:" destination="Rfx-Fw-eyE" eventType="touchUpInside" id="LFq-Sn-wsa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,7 +62,6 @@
                                 <rect key="frame" x="198" y="247" width="716" height="227"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -64,6 +69,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="PdK-CE-C6y"/>
                     </view>
+                    <connections>
+                        <outlet property="InitialStatePickerView" destination="PcH-8C-578" id="HEn-KX-6qd"/>
+                        <outlet property="logTextView" destination="N8y-Xz-Djk" id="kiT-Lw-K2W"/>
+                        <outlet property="numeroEntrenamientosTxt" destination="Ow3-vK-IhV" id="OaD-4K-flB"/>
+                        <outlet property="resultadoView" destination="mxW-ai-dTB" id="0EW-FU-15b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSt-Eq-fRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

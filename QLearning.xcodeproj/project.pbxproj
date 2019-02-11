@@ -15,6 +15,8 @@
 		7B3A5620220F8F6A00D3FCC2 /* Graficos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A561F220F8F6A00D3FCC2 /* Graficos.swift */; };
 		7B3A5622220FB5F500D3FCC2 /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A5621220FB5F500D3FCC2 /* TrainingViewController.swift */; };
 		7B3A5624220FBDBE00D3FCC2 /* QLearning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3A5623220FBDBE00D3FCC2 /* QLearning.swift */; };
+		7B8F2622221106860041CDEE /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8F2621221106860041CDEE /* Gif.swift */; };
+		7B8F2624221108E30041CDEE /* electricZoo2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7B8F2623221108E20041CDEE /* electricZoo2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		7B3A561F220F8F6A00D3FCC2 /* Graficos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graficos.swift; sourceTree = "<group>"; };
 		7B3A5621220FB5F500D3FCC2 /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 		7B3A5623220FBDBE00D3FCC2 /* QLearning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLearning.swift; sourceTree = "<group>"; };
+		7B8F2621221106860041CDEE /* Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
+		7B8F2623221108E20041CDEE /* electricZoo2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electricZoo2.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				7B3A560D220F87CC00D3FCC2 /* AppDelegate.swift */,
+				7B8F2623221108E20041CDEE /* electricZoo2.mp3 */,
 				7B3A560F220F87CC00D3FCC2 /* AnimationResultViewController.swift */,
 				7B3A5621220FB5F500D3FCC2 /* TrainingViewController.swift */,
+				7B8F2621221106860041CDEE /* Gif.swift */,
 				7B3A5623220FBDBE00D3FCC2 /* QLearning.swift */,
 				7B3A561F220F8F6A00D3FCC2 /* Graficos.swift */,
 				7B3A5611220F87CC00D3FCC2 /* Main.storyboard */,
@@ -131,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8F2624221108E30041CDEE /* electricZoo2.mp3 in Resources */,
 				7B3A5618220F87CE00D3FCC2 /* LaunchScreen.storyboard in Resources */,
 				7B3A5615220F87CE00D3FCC2 /* Assets.xcassets in Resources */,
 				7B3A5613220F87CC00D3FCC2 /* Main.storyboard in Resources */,
@@ -146,6 +153,7 @@
 			files = (
 				7B3A5624220FBDBE00D3FCC2 /* QLearning.swift in Sources */,
 				7B3A5610220F87CC00D3FCC2 /* AnimationResultViewController.swift in Sources */,
+				7B8F2622221106860041CDEE /* Gif.swift in Sources */,
 				7B3A560E220F87CC00D3FCC2 /* AppDelegate.swift in Sources */,
 				7B3A5622220FB5F500D3FCC2 /* TrainingViewController.swift in Sources */,
 				7B3A5620220F8F6A00D3FCC2 /* Graficos.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TrainingViewController: UIViewController {
     
@@ -15,6 +16,10 @@ class TrainingViewController: UIViewController {
     @IBOutlet weak var numeroEntrenamientosTxt: UITextField!
     
     @IBOutlet weak var InitialStatePickerView: UIPickerView!
+    
+    @IBOutlet weak var gifImageView: UIImageView!
+    
+    var player = AVAudioPlayer.init()
     
     let estados = ["Estado inicial","0", "1", "2", "3", "4", "5", "6", "7", "8"]
     
@@ -31,14 +36,40 @@ class TrainingViewController: UIViewController {
         self.trainingSession = QLearning(delegate: self)
         self.InitialStatePickerView.delegate = self
         self.InitialStatePickerView.dataSource = self
+        self.gifImageView.loadGif(asset: "donCangrejo")
+        self.gifImageView.isHidden = true
+        
+        
         
 
         // Do any additional setup after loading the view.
     }
     
-
+    func setUpAnimacionCangrejo() {
+        
+        self.gifImageView.isHidden = false
+        let path = Bundle.main.path(forResource: "electricZoo2", ofType : "mp3")!
+        let url = URL(fileURLWithPath : path)
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = 100
+            player.play()
+            
+        } catch {
+            
+            print ("No se puede reproducir bip bup bup bop")
+            
+        }
+        
+    }
     @IBAction func startTrainingDidPressed(_ sender: Any) {
         let number = Int(self.numeroEntrenamientosTxt.text!) ?? -1
+        
+        setUpAnimacionCangrejo()
+        
+        
+        
         
         self.trainingSession.numberOfTrainings = number
         self.view.endEditing(true)
@@ -49,13 +80,19 @@ class TrainingViewController: UIViewController {
                 
                 if error != nil {
                     performUIUpdatesOnMain {
+                        self.player.pause()
+                        self.gifImageView.isHidden = true
+                        
                         self.showMessage(title: "Error", text: error ?? "")
                     }
                     
                     
                 } else {
                     self.QMatrix = qMatrix
+                    
                     performUIUpdatesOnMain {
+                        self.player.pause()
+                        self.gifImageView.isHidden = true
                         self.logTextView.text = "\(self.logTextView.text) \n \(self.printMatrix(matrix: self.QMatrix!)))"
                         self.showMessage(title: "Listo", text: "Entrenamiento Completado")
                     }

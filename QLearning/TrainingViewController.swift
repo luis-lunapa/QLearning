@@ -16,15 +16,18 @@ class TrainingViewController: UIViewController {
     
     @IBOutlet weak var InitialStatePickerView: UIPickerView!
     
-    let estados = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    let estados = ["Estado inicial","0", "1", "2", "3", "4", "5", "6", "7", "8"]
     
     @IBOutlet weak var resultadoView: UIView!
     var trainingSession: QLearning!
     
-    var selectedInitialState = "-1"
+    var selectedInitialState = -1
+    
+    var QMatrix: [[Int]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
         self.trainingSession = QLearning(delegate: self)
         self.InitialStatePickerView.delegate = self
         self.InitialStatePickerView.dataSource = self
@@ -38,9 +41,29 @@ class TrainingViewController: UIViewController {
         let number = Int(self.numeroEntrenamientosTxt.text!) ?? -1
         
         self.trainingSession.numberOfTrainings = number
+        self.view.endEditing(true)
         
         DispatchQueue.global().async {
-             let q = self.trainingSession.startTraining()
+            self.trainingSession.startTraining() {
+                [unowned self] qMatrix, error in
+                
+                if error != nil {
+                    performUIUpdatesOnMain {
+                        self.showMessage(title: "Error", text: error ?? "")
+                    }
+                    
+                    
+                } else {
+                    self.QMatrix = qMatrix
+                    performUIUpdatesOnMain {
+                        self.logTextView.text = "\(self.logTextView.text) \n \(self.printMatrix(matrix: self.QMatrix!)))"
+                        self.showMessage(title: "Listo", text: "Entrenamiento Completado")
+                    }
+                }
+                
+
+            }
+            
             
         }
        
@@ -49,6 +72,48 @@ class TrainingViewController: UIViewController {
     
     @IBAction func mostrarResultadoDidPressed(_ sender: Any) {
         
+        if selectedInitialState == -1 {
+            ///Mostrar alerta
+            self.showMessage(title: "Error", text: "Escoja un estado inicial")
+            print("Escoja estado inicial")
+            return
+        }
+        
+        if let q = self.QMatrix {
+            let animacion = self.storyboard?.instantiateViewController(withIdentifier: "animacion") as! AnimationResultViewController
+            animacion.selectedInitialState = self.selectedInitialState
+            animacion.Q = q
+            animacion.trainingSession = self.trainingSession
+            
+            self.show(animacion, sender: self)
+
+        } else {
+            self.showMessage(title: "Error", text: "Aún no se ha iniciado entrenamiento")
+            print("Aun no se ha iniciado entrenamiento")
+            
+        }
+        
+    }
+    
+    func showMessage(title: String, text: String) {
+        let alert = UIAlertController.init(title: title, message: text, preferredStyle: .alert)
+        let ok = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true)
+        
+        
+    }
+    
+    func printMatrix(matrix: [[Int]])-> String {
+        var str = """
+"""
+        
+        for i in matrix {
+            str.append("\(i)\n")
+
+        }
+        
+        return str
         
     }
     
@@ -74,15 +139,30 @@ extension TrainingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "Estado: \(estados[row])"
+        
+        if row == 0 {
+            return estados[row]
+        } else {
+            return "Estado: \(estados[row])"
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedInitialState = estados[row]
+        if row != 0 {
+            self.selectedInitialState = Int(estados[row])!
+        }
+        
     }
     
     
     
     
     
+}
+
+func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
+    DispatchQueue.main.async {
+        updates()
+    }
 }

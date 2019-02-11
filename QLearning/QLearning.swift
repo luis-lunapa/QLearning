@@ -50,10 +50,18 @@ class QLearning {
     
     let finalState = 9
     
-    func startTraining() -> [[Int]]? {
-        if isTraining || self.numberOfTrainings == -1 {
-            print("Ya hay una sesión de entrenamiento en curso...")
-            return nil
+    func startTraining(completion: @escaping(([[Int]]?, String?)) -> ()) {
+        
+        if isTraining  {
+            
+            completion((nil, "Ya hay una sesión de entrenamiento en curso"))
+            return
+        }
+        print("Number of trainings === \(self.numberOfTrainings)")
+        if self.numberOfTrainings < 1 {
+            completion((nil, "Escriba un número válido de entrenamientos"))
+            return
+            
         }
         
         var initialStateNumber: Int!
@@ -75,7 +83,7 @@ class QLearning {
             while actualState != finalState {
                 nextState = self.getActionFor(state: actualState) // VER
                 
-                log(str: "Estados posibles para \(actualState) = \(nextState)")
+                log(str: "Estados posibles para \(actualState!) = \(nextState!)")
                 
                 //// Actualizar Q con la formula'
                 
@@ -85,7 +93,7 @@ class QLearning {
                 Q[actualState][nextState] = resultadoQ
                 
                 actualState = nextState
-                log(str: "Actual state ahora es = \(actualState)")
+                log(str: "Actual state ahora es = \(actualState!)")
                 
             }
             
@@ -96,8 +104,9 @@ class QLearning {
 
         isTraining = false
         
-        log(str: "Resultado = \(Q)")
-        return Q
+        //log(str: "Resultado = \(Q)")'
+        print(Q)
+        completion((Q, nil))
 
     }
     

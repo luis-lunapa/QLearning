@@ -15,7 +15,8 @@
 # Autores 
 * **Luis Gerardo Luna Peña** <details>
     <summary> Contacto </summary> 
-    <a href="mailto:luis.lunapa@udlap.mx" target="_top">luis.lunapa@udlap.mx</a>
+    <a href="mailto:luis.lunapa@udlap.mx" target="_top">luis.lunapa@udlap.mx</a><br>
+    <a href="http://luislunapa.com/">http://luislunapa.com/</a>
     </details>
 * **Luis Antoni Vázquez García** <details>
     <summary> Contacto </summary> 
